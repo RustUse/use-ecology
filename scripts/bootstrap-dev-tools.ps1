@@ -12,35 +12,34 @@ $tools = @(
     "cargo-machete"
 )
 
-function Invoke-CommandLine {
+function Invoke-Step {
     param(
-        [Parameter(Mandatory = $true)]
-        [string]$FilePath,
-
-        [Parameter(ValueFromRemainingArguments = $true)]
         [string[]]$Arguments
     )
 
     if ($DryRun) {
-        Write-Host "+ $FilePath $($Arguments -join ' ')"
+        Write-Host "+ $($Arguments -join ' ')"
         return
     }
 
-    & $FilePath @Arguments
+    $command = $Arguments[0]
+    $remaining = @()
+
+    if ($Arguments.Length -gt 1) {
+        $remaining = $Arguments[1..($Arguments.Length - 1)]
+    }
+
+    & $command @remaining
+
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE
     }
 }
 
 if (-not (Get-Command cargo -ErrorAction SilentlyContinue)) {
-    throw "cargo is required"
+    Write-Error "cargo is required to bootstrap dev tools."
 }
-
-Invoke-CommandLine rustup component add rustfmt clippy
 
 foreach ($tool in $tools) {
-    Write-Host "Installing or updating $tool"
-    Invoke-CommandLine cargo install --locked $tool
+    Invoke-Step -Arguments @("cargo", "install", "--locked", $tool)
 }
-
-Write-Host "Optional RustUse development tools are ready."

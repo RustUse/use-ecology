@@ -5,8 +5,9 @@ include = [
     ".rustfmt.toml",
     ".taplo.toml",
     "Cargo.toml",
-    "crates/**/*.toml",
     "deny.toml",
+    "shared/**/*.toml",
+    "tools/**/*.toml",
 ]
 
 [formatting]

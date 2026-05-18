@@ -3,6 +3,7 @@ set -euo pipefail
 
 TOOLS=(cargo-deny cargo-audit cargo-cyclonedx release-plz cargo-machete)
 DRY_RUN=0
+CARGO_CMD=
 
 usage() {
   cat <<'EOF'
@@ -16,15 +17,18 @@ EOF
 run_cmd() {
   if [ "$DRY_RUN" -eq 1 ]; then
     printf '+'
-    printf ' %q' "$@"
+    for arg in "$@"; do
+      printf ' %q' "$arg"
+    done
     printf '\n'
-  else
-    "$@"
+    return 0
   fi
+
+  "$@"
 }
 
-while [ "$#" -gt 0 ]; do
-  case "$1" in
+for arg in "$@"; do
+  case "$arg" in
     --dry-run)
       DRY_RUN=1
       ;;
@@ -33,24 +37,22 @@ while [ "$#" -gt 0 ]; do
       exit 0
       ;;
     *)
-      echo "unknown argument: $1" >&2
+      printf 'Unknown argument: %s\n\n' "$arg" >&2
       usage >&2
       exit 2
       ;;
   esac
-  shift
 done
 
-if ! command -v cargo >/dev/null 2>&1; then
-  echo "cargo is required" >&2
+if command -v cargo >/dev/null 2>&1; then
+  CARGO_CMD=cargo
+elif command -v cargo.exe >/dev/null 2>&1; then
+  CARGO_CMD=cargo.exe
+else
+  printf 'cargo is required to bootstrap dev tools.\n' >&2
   exit 1
 fi
 
-rustup component add rustfmt clippy
-
 for tool in "${TOOLS[@]}"; do
-  echo "Installing or updating ${tool}"
-  run_cmd cargo install --locked "$tool"
+  run_cmd "$CARGO_CMD" install --locked "$tool"
 done
-
-echo "Optional RustUse development tools are ready."
