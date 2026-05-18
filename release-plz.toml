@@ -1,0 +1,99 @@
+[workspace]
+release = false
+release_always = false
+changelog_update = false
+pr_labels = ["release"]
+max_analyze_commits = 2000
+
+[[package]]
+name = "use-ecosystem"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-habitat"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-population"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-community"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-niche"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-biome"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-food-web"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-species-interaction"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-trophic-level"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-biodiversity"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-conservation-status"
+release = true
+version_group = "rustuse-ecology"
+
+[[package]]
+name = "use-ecology"
+release = true
+version_group = "rustuse-ecology"
+changelog_update = true
+changelog_path = "./CHANGELOG.md"
+changelog_include = [
+  "use-ecosystem",
+  "use-habitat",
+  "use-population",
+  "use-community",
+  "use-niche",
+  "use-biome",
+  "use-food-web",
+  "use-species-interaction",
+  "use-trophic-level",
+  "use-biodiversity",
+  "use-conservation-status",
+]
+
+[changelog]
+header = """# Changelog
+
+## Unreleased
+"""
+protect_breaking_commits = true
+sort_commits = "oldest"
+commit_parsers = [
+  { message = "^feat(?:\\([^)]+\\))?!?: .+", group = "Added" },
+  { message = "^fix(?:\\([^)]+\\))?!?: .+", group = "Fixed" },
+  { message = "^security(?:\\([^)]+\\))?!?: .+", group = "Security" },
+  { message = "^(?:refactor|perf|change)(?:\\([^)]+\\))?!?: .+", group = "Changed" },
+  { message = "^docs(?:\\([^)]+\\))?!?: .+", group = "Documentation" },
+  { message = "^(?:build|ci|chore|deps|test)(?:\\([^)]+\\))?!?: .+", group = "Tooling" },
+  { footer = "^changelog: ?ignore$", skip = true },
+  { message = "^.*", group = "Changed" },
+]

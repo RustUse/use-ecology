@@ -1,0 +1,21 @@
+[package]
+name = "use-community"
+description = "Primitive ecological community vocabulary for RustUse"
+publish = true
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+documentation = "https://docs.rs/use-community"
+keywords = ["community", "ecology", "composition", "role", "rustuse"]
+categories = ["data-structures", "science"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lints]
+workspace = true
