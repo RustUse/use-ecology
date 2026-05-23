@@ -1,4 +1,4 @@
-# use-community
+﻿# use-community
 
 Primitive ecological community vocabulary.
 
@@ -6,7 +6,7 @@ use-community models non-empty community names, descriptive community kinds and 
 
 ## Example
 
-`ust
+```rust
 use use_community::{CommunityComposition, CommunityKind, CommunityName, CommunityRole};
 
 let name = CommunityName::new("reef fish assemblage")?;
@@ -17,7 +17,7 @@ assert_eq!(CommunityKind::AquaticCommunity.to_string(), "aquatic-community");
 assert_eq!(CommunityRole::Keystone.to_string(), "keystone");
 assert_eq!(composition.iter().next(), Some(&"grouper".to_string()));
 # Ok::<(), use_community::CommunityTextError>(())
-`
+```
 
 ## Scope
 

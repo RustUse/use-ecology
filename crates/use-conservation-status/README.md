@@ -1,4 +1,4 @@
-# use-conservation-status
+﻿# use-conservation-status
 
 Primitive conservation status vocabulary.
 
@@ -6,7 +6,7 @@ use-conservation-status models descriptive conservation status labels, threat ki
 
 ## Example
 
-`ust
+```rust
 use use_conservation_status::{
     ConservationStatus, ConservationStatusSystem, ProtectionStatus, ThreatKind,
 };
@@ -18,7 +18,7 @@ assert_eq!(ConservationStatus::Vulnerable.to_string(), "vulnerable");
 assert_eq!(ThreatKind::HabitatLoss.to_string(), "habitat-loss");
 assert_eq!(system.to_string(), "IUCN");
 assert_eq!(protection.to_string(), "protected-area");
-`
+```
 
 ## Scope
 

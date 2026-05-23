@@ -37,6 +37,8 @@ impl Error for CommunityTextError {}
 pub struct CommunityName(String);
 
 impl CommunityName {
+    /// # Errors
+    /// Returns `CommunityTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, CommunityTextError> {
         non_empty_text(value).map(Self)
     }
@@ -67,6 +69,8 @@ pub struct CommunityComposition {
 }
 
 impl CommunityComposition {
+    /// # Errors
+    /// Returns `CommunityTextError::Empty` when any provided label is blank.
     pub fn new<I, S>(labels: I) -> Result<Self, CommunityTextError>
     where
         I: IntoIterator<Item = S>,

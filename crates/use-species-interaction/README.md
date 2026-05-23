@@ -1,4 +1,4 @@
-# use-species-interaction
+﻿# use-species-interaction
 
 Primitive species interaction vocabulary.
 
@@ -6,7 +6,7 @@ use-species-interaction models descriptive interaction kinds and strengths plus 
 
 ## Example
 
-`ust
+```rust
 use use_species_interaction::{InteractionStrength, SpeciesInteraction, SpeciesInteractionKind};
 
 let interaction = SpeciesInteraction::new("coral", "algae", SpeciesInteractionKind::Mutualism)
@@ -15,7 +15,7 @@ let interaction = SpeciesInteraction::new("coral", "algae", SpeciesInteractionKi
 
 assert_eq!(interaction.to_string(), "coral -[mutualism]-> algae");
 assert_eq!(interaction.strength(), Some(&InteractionStrength::Strong));
-`
+```
 
 ## Scope
 

@@ -1,4 +1,4 @@
-# use-trophic-level
+﻿# use-trophic-level
 
 Primitive trophic-level vocabulary.
 
@@ -6,7 +6,7 @@ use-trophic-level models descriptive trophic levels and roles plus non-negative 
 
 ## Example
 
-`ust
+```rust
 use use_trophic_level::{TrophicLevel, TrophicPosition, TrophicRole};
 
 let role = TrophicRole::new("reef grazer").unwrap();
@@ -15,7 +15,7 @@ let position = TrophicPosition::new(2.0).unwrap();
 assert_eq!(TrophicLevel::PrimaryConsumer.to_string(), "primary-consumer");
 assert_eq!(role.to_string(), "reef grazer");
 assert_eq!(position.get(), 2.0);
-`
+```
 
 ## Scope
 

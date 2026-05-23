@@ -54,6 +54,8 @@ impl Error for NicheValueError {}
 pub struct NicheName(String);
 
 impl NicheName {
+    /// # Errors
+    /// Returns `NicheTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, NicheTextError> {
         non_empty_text(value).map(Self)
     }
@@ -82,6 +84,8 @@ impl FromStr for NicheName {
 pub struct ResourceUse(String);
 
 impl ResourceUse {
+    /// # Errors
+    /// Returns `NicheTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, NicheTextError> {
         non_empty_text(value).map(Self)
     }
@@ -110,6 +114,9 @@ impl FromStr for ResourceUse {
 pub struct NicheBreadth(f64);
 
 impl NicheBreadth {
+    /// # Errors
+    /// Returns `NicheValueError::NonFinite` when `value` is not finite.
+    /// Returns `NicheValueError::Negative` when `value` is less than zero.
     pub fn new(value: f64) -> Result<Self, NicheValueError> {
         if !value.is_finite() {
             return Err(NicheValueError::NonFinite);
@@ -234,7 +241,7 @@ mod tests {
     fn valid_niche_breadth() -> Result<(), NicheValueError> {
         let breadth = NicheBreadth::new(1.25)?;
 
-        assert_eq!(breadth.get(), 1.25);
+        assert!((breadth.get() - 1.25).abs() < f64::EPSILON);
         Ok(())
     }
 

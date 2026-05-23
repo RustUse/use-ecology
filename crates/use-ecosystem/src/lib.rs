@@ -37,6 +37,8 @@ impl Error for EcosystemTextError {}
 pub struct EcosystemName(String);
 
 impl EcosystemName {
+    /// # Errors
+    /// Returns `EcosystemTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, EcosystemTextError> {
         non_empty_text(value).map(Self)
     }
@@ -76,6 +78,8 @@ impl FromStr for EcosystemName {
 pub struct EcosystemComponent(String);
 
 impl EcosystemComponent {
+    /// # Errors
+    /// Returns `EcosystemTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, EcosystemTextError> {
         non_empty_text(value).map(Self)
     }

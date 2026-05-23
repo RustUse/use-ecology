@@ -37,6 +37,8 @@ impl Error for BiomeTextError {}
 pub struct BiomeName(String);
 
 impl BiomeName {
+    /// # Errors
+    /// Returns `BiomeTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, BiomeTextError> {
         non_empty_text(value).map(Self)
     }
@@ -65,6 +67,8 @@ impl FromStr for BiomeName {
 pub struct BiomeClimate(String);
 
 impl BiomeClimate {
+    /// # Errors
+    /// Returns `BiomeTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, BiomeTextError> {
         non_empty_text(value).map(Self)
     }

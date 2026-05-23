@@ -1,4 +1,4 @@
-# use-population
+﻿# use-population
 
 Primitive ecological population vocabulary.
 
@@ -6,7 +6,7 @@ use-population models non-empty population identifiers and names, non-negative p
 
 ## Example
 
-`ust
+```rust
 use use_population::{PopulationDensity, PopulationId, PopulationName, PopulationSize, PopulationTrend};
 
 let id = PopulationId::new("marsh-herons")?;
@@ -19,8 +19,8 @@ assert_eq!(name.to_string(), "Marsh herons");
 assert_eq!(size.get(), 420);
 assert_eq!(density.get(), 3.5);
 assert_eq!(PopulationTrend::Stable.to_string(), "stable");
-# Ok::<(), use_population::PopulationTextError>(())
-`
+# Ok::<(), Box<dyn std::error::Error>>(())
+```
 
 ## Scope
 

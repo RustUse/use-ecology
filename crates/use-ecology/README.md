@@ -1,6 +1,6 @@
 # use-ecology
 
-Facade crate for primitive RustUse ecology vocabulary.
+Facade crate for primitive `RustUse` ecology vocabulary.
 
 `use-ecology` re-exports focused crates for ecosystems, habitats, populations, communities, niches, biomes, food webs, species interactions, trophic levels, biodiversity, and conservation status. It is not an ecology simulator, population model, climate model, biodiversity database, conservation-planning system, GIS engine, food-web simulator, species-distribution model, or environmental science framework.
 

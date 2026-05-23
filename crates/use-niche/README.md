@@ -1,4 +1,4 @@
-# use-niche
+﻿# use-niche
 
 Primitive ecological niche vocabulary.
 
@@ -6,7 +6,7 @@ use-niche models non-empty niche names, descriptive niche kinds, resource-use la
 
 ## Example
 
-`ust
+```rust
 use use_niche::{NicheBreadth, NicheKind, NicheName, ResourceUse};
 
 let name = NicheName::new("reef grazer").unwrap();
@@ -17,7 +17,7 @@ assert_eq!(name.to_string(), "reef grazer");
 assert_eq!(NicheKind::Trophic.to_string(), "trophic");
 assert_eq!(resource.to_string(), "filamentous algae");
 assert_eq!(breadth.get(), 2.5);
-`
+```
 
 ## Scope
 

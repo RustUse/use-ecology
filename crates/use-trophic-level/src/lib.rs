@@ -125,6 +125,8 @@ impl Error for TrophicLevelParseError {}
 pub struct TrophicRole(String);
 
 impl TrophicRole {
+    /// # Errors
+    /// Returns `TrophicTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, TrophicTextError> {
         non_empty_text(value).map(Self)
     }
@@ -153,6 +155,9 @@ impl FromStr for TrophicRole {
 pub struct TrophicPosition(f64);
 
 impl TrophicPosition {
+    /// # Errors
+    /// Returns `TrophicValueError::NonFinite` when `value` is not finite.
+    /// Returns `TrophicValueError::Negative` when `value` is less than zero.
     pub fn new(value: f64) -> Result<Self, TrophicValueError> {
         if !value.is_finite() {
             return Err(TrophicValueError::NonFinite);
@@ -202,7 +207,7 @@ mod tests {
     fn valid_trophic_position() -> Result<(), TrophicValueError> {
         let position = TrophicPosition::new(2.5)?;
 
-        assert_eq!(position.get(), 2.5);
+        assert!((position.get() - 2.5).abs() < f64::EPSILON);
         Ok(())
     }
 

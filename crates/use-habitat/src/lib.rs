@@ -37,6 +37,8 @@ impl Error for HabitatTextError {}
 pub struct HabitatName(String);
 
 impl HabitatName {
+    /// # Errors
+    /// Returns `HabitatTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, HabitatTextError> {
         non_empty_text(value).map(Self)
     }
@@ -65,6 +67,8 @@ impl FromStr for HabitatName {
 pub struct HabitatFeature(String);
 
 impl HabitatFeature {
+    /// # Errors
+    /// Returns `HabitatTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, HabitatTextError> {
         non_empty_text(value).map(Self)
     }

@@ -54,6 +54,8 @@ impl Error for PopulationValueError {}
 pub struct PopulationId(String);
 
 impl PopulationId {
+    /// # Errors
+    /// Returns `PopulationTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, PopulationTextError> {
         non_empty_text(value).map(Self)
     }
@@ -82,6 +84,8 @@ impl FromStr for PopulationId {
 pub struct PopulationName(String);
 
 impl PopulationName {
+    /// # Errors
+    /// Returns `PopulationTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, PopulationTextError> {
         non_empty_text(value).map(Self)
     }
@@ -110,11 +114,13 @@ impl FromStr for PopulationName {
 pub struct PopulationSize(u64);
 
 impl PopulationSize {
-    pub fn new(value: i64) -> Result<Self, PopulationValueError> {
+    /// # Errors
+    /// Returns `PopulationValueError::Negative` when `value` is less than zero.
+    pub const fn new(value: i64) -> Result<Self, PopulationValueError> {
         if value < 0 {
             Err(PopulationValueError::Negative)
         } else {
-            Ok(Self(value as u64))
+            Ok(Self(value.cast_unsigned()))
         }
     }
 
@@ -134,6 +140,9 @@ impl fmt::Display for PopulationSize {
 pub struct PopulationDensity(f64);
 
 impl PopulationDensity {
+    /// # Errors
+    /// Returns `PopulationValueError::NonFinite` when `value` is not finite.
+    /// Returns `PopulationValueError::Negative` when `value` is less than zero.
     pub fn new(value: f64) -> Result<Self, PopulationValueError> {
         if !value.is_finite() {
             return Err(PopulationValueError::NonFinite);
@@ -263,7 +272,7 @@ mod tests {
     fn valid_population_density() -> Result<(), PopulationValueError> {
         let density = PopulationDensity::new(3.5)?;
 
-        assert_eq!(density.get(), 3.5);
+        assert!((density.get() - 3.5).abs() < f64::EPSILON);
         Ok(())
     }
 }

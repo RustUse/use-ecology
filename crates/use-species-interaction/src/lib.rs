@@ -172,6 +172,8 @@ pub struct SpeciesInteraction {
 }
 
 impl SpeciesInteraction {
+    /// # Errors
+    /// Returns `InteractionTextError::Empty` when `first` or `second` is blank.
     pub fn new(
         first: impl AsRef<str>,
         second: impl AsRef<str>,

@@ -29,11 +29,13 @@ impl Error for BiodiversityValueError {}
 pub struct SpeciesRichness(u64);
 
 impl SpeciesRichness {
-    pub fn new(value: i64) -> Result<Self, BiodiversityValueError> {
+    /// # Errors
+    /// Returns `BiodiversityValueError::Negative` when `value` is less than zero.
+    pub const fn new(value: i64) -> Result<Self, BiodiversityValueError> {
         if value < 0 {
             Err(BiodiversityValueError::Negative)
         } else {
-            Ok(Self(value as u64))
+            Ok(Self(value.cast_unsigned()))
         }
     }
 
@@ -121,6 +123,8 @@ pub struct DiversityIndex {
 }
 
 impl DiversityIndex {
+    /// # Errors
+    /// Returns `BiodiversityValueError::NonFinite` when `value` is not finite.
     pub fn new(kind: DiversityIndexKind, value: f64) -> Result<Self, BiodiversityValueError> {
         if !value.is_finite() {
             return Err(BiodiversityValueError::NonFinite);
@@ -135,7 +139,7 @@ impl DiversityIndex {
     }
 
     #[must_use]
-    pub fn value(&self) -> f64 {
+    pub const fn value(&self) -> f64 {
         self.value
     }
 }
@@ -155,7 +159,7 @@ pub enum BiodiversityMeasure {
 impl fmt::Display for BiodiversityMeasure {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::SpeciesRichness(value) => write!(formatter, "species-richness: {}", value),
+            Self::SpeciesRichness(value) => write!(formatter, "species-richness: {value}"),
             Self::DiversityIndex(value) => value.fmt(formatter),
         }
     }
@@ -211,7 +215,7 @@ mod tests {
         let index = DiversityIndex::new(DiversityIndexKind::Shannon, 2.3)?;
 
         assert_eq!(index.kind(), &DiversityIndexKind::Shannon);
-        assert_eq!(index.value(), 2.3);
+        assert!((index.value() - 2.3).abs() < f64::EPSILON);
         assert_eq!(
             BiodiversityMeasure::DiversityIndex(index).to_string(),
             "shannon: 2.3"

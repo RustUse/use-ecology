@@ -1,4 +1,4 @@
-# use-biodiversity
+﻿# use-biodiversity
 
 Primitive biodiversity vocabulary.
 
@@ -6,7 +6,7 @@ use-biodiversity models non-negative species richness values, descriptive divers
 
 ## Example
 
-`ust
+```rust
 use use_biodiversity::{BiodiversityMeasure, DiversityIndex, DiversityIndexKind, SpeciesRichness};
 
 let richness = SpeciesRichness::new(128).unwrap();
@@ -14,7 +14,7 @@ let shannon = DiversityIndex::new(DiversityIndexKind::Shannon, 2.3).unwrap();
 
 assert_eq!(BiodiversityMeasure::SpeciesRichness(richness).to_string(), "species-richness: 128");
 assert_eq!(BiodiversityMeasure::DiversityIndex(shannon).to_string(), "shannon: 2.3");
-`
+```
 
 ## Scope
 

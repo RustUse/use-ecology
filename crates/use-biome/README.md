@@ -1,4 +1,4 @@
-# use-biome
+﻿# use-biome
 
 Primitive biome vocabulary.
 
@@ -6,7 +6,7 @@ use-biome models non-empty biome names, descriptive biome kinds, and simple biom
 
 ## Example
 
-`ust
+```rust
 use use_biome::{BiomeClimate, BiomeKind, BiomeName};
 
 let name = BiomeName::new("temperate rainforest").unwrap();
@@ -15,7 +15,7 @@ let climate = BiomeClimate::new("cool and humid").unwrap();
 assert_eq!(name.to_string(), "temperate rainforest");
 assert_eq!(BiomeKind::TemperateForest.to_string(), "temperate-forest");
 assert_eq!(climate.to_string(), "cool and humid");
-`
+```
 
 ## Scope
 

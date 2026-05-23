@@ -37,6 +37,8 @@ impl Error for FoodWebTextError {}
 pub struct FoodWebName(String);
 
 impl FoodWebName {
+    /// # Errors
+    /// Returns `FoodWebTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, FoodWebTextError> {
         non_empty_text(value).map(Self)
     }
@@ -190,6 +192,8 @@ pub struct FoodWebLink {
 }
 
 impl FoodWebLink {
+    /// # Errors
+    /// Returns `FoodWebTextError::Empty` when `source` or `target` is blank.
     pub fn new(
         source: impl AsRef<str>,
         target: impl AsRef<str>,

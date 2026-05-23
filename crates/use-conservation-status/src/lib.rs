@@ -179,6 +179,8 @@ impl Error for ThreatKindParseError {}
 pub struct ConservationStatusSystem(String);
 
 impl ConservationStatusSystem {
+    /// # Errors
+    /// Returns `ConservationTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, ConservationTextError> {
         non_empty_text(value).map(Self)
     }
@@ -199,6 +201,8 @@ impl fmt::Display for ConservationStatusSystem {
 pub struct ProtectionStatus(String);
 
 impl ProtectionStatus {
+    /// # Errors
+    /// Returns `ConservationTextError::Empty` when `value` is blank.
     pub fn new(value: impl AsRef<str>) -> Result<Self, ConservationTextError> {
         non_empty_text(value).map(Self)
     }
