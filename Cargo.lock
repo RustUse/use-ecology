@@ -4,23 +4,23 @@ version = 4
 
 [[package]]
 name = "use-biodiversity"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-biome"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-community"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-conservation-status"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-ecology"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "use-biodiversity",
  "use-biome",
@@ -37,28 +37,28 @@ dependencies = [
 
 [[package]]
 name = "use-ecosystem"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-food-web"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-habitat"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-niche"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-population"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-species-interaction"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "use-trophic-level"
-version = "0.1.0"
+version = "0.1.1"

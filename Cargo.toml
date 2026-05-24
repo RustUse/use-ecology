@@ -24,21 +24,21 @@ publish = false
 readme = "README.md"
 repository = "https://github.com/RustUse/use-ecology"
 rust-version = "1.95.0"
-version = "0.1.0"
+version = "0.1.1"
 
 [workspace.dependencies]
-use-biodiversity = { version = "0.1.0", path = "crates/use-biodiversity" }
-use-biome = { version = "0.1.0", path = "crates/use-biome" }
-use-community = { version = "0.1.0", path = "crates/use-community" }
-use-conservation-status = { version = "0.1.0", path = "crates/use-conservation-status" }
-use-ecology = { version = "0.1.0", path = "crates/use-ecology" }
-use-ecosystem = { version = "0.1.0", path = "crates/use-ecosystem" }
-use-food-web = { version = "0.1.0", path = "crates/use-food-web" }
-use-habitat = { version = "0.1.0", path = "crates/use-habitat" }
-use-niche = { version = "0.1.0", path = "crates/use-niche" }
-use-population = { version = "0.1.0", path = "crates/use-population" }
-use-species-interaction = { version = "0.1.0", path = "crates/use-species-interaction" }
-use-trophic-level = { version = "0.1.0", path = "crates/use-trophic-level" }
+use-biodiversity = { version = "0.1.1", path = "crates/use-biodiversity" }
+use-biome = { version = "0.1.1", path = "crates/use-biome" }
+use-community = { version = "0.1.1", path = "crates/use-community" }
+use-conservation-status = { version = "0.1.1", path = "crates/use-conservation-status" }
+use-ecology = { version = "0.1.1", path = "crates/use-ecology" }
+use-ecosystem = { version = "0.1.1", path = "crates/use-ecosystem" }
+use-food-web = { version = "0.1.1", path = "crates/use-food-web" }
+use-habitat = { version = "0.1.1", path = "crates/use-habitat" }
+use-niche = { version = "0.1.1", path = "crates/use-niche" }
+use-population = { version = "0.1.1", path = "crates/use-population" }
+use-species-interaction = { version = "0.1.1", path = "crates/use-species-interaction" }
+use-trophic-level = { version = "0.1.1", path = "crates/use-trophic-level" }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"
